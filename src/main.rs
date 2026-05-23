@@ -503,11 +503,35 @@
 //     describe_person(&jake); // เรียกใช้ฟังก์ชั่น describe_person โดยส่ง reference ของตัวแปร jake
 // }
 
-#[derive(Debug)]
-struct Point(i32, i32);
+// #[derive(Debug)]
+// struct Point(i32, i32);
 
+// fn main() {
+//     let p = Point(3, 4); // ประกาศตัวแปร p เป็น instance ของ struct Point ที่เก็บค่าตำแหน่ง x และ y ของจุดในรูปแบบ (x, y)
+//     dbg!(p); // พิมพ์ค่าของตัวแปร p ออกทางหน้าจอ โดยใช้รูปแบบ debug
+//     // println!("Point: ({}, {})", p.0, p.1); // พิมพ์ค่าของตัวแปร p ออกทางหน้าจอ
+// }
+
+
+
+struct Newton(f64);
+struct Kilogram(f64);
+
+fn compute_force(Newton(n   )) -> Newton {
+    Newton(n)
+}
+fn compute_mass(Kilogram(k  )) -> Kilogram {
+    Kilogram(k)
+}
+
+fn compute_acceleration(Newton(n), Kilogram(k)) -> f64 {
+    // เอามาคำนวนกันไม่ได้ เพราะคนละ type กัน
+    // Newton และ Kilogram เป็น struct ที่มีชนิดข้อมูลที่แตกต่างกัน และไม่มีการกำหนดวิธีการคำนวณระหว่างกันในโค้ดนี้ ดังนั้นจึงไม่สามารถนำค่า n จาก Newton และค่า k จาก Kilogram มาคำนว
+    n / k
+}
 fn main() {
-    let p = Point(3, 4); // ประกาศตัวแปร p เป็น instance ของ struct Point ที่เก็บค่าตำแหน่ง x และ y ของจุดในรูปแบบ (x, y)
-    dbg!(p); // พิมพ์ค่าของตัวแปร p ออกทางหน้าจอ โดยใช้รูปแบบ debug
-    // println!("Point: ({}, {})", p.0, p.1); // พิมพ์ค่าของตัวแปร p ออกทางหน้าจอ
+    let force = compute_force(Newton(10.0)); // สร้าง instance ของ struct Newton ที่มีค่า 10.0 และส่งเข้าไปในฟังก์ชั่น compute_force เพื่อคำนวณแรง
+    let mass = compute_mass(Kilogram(2.0)); // สร้าง instance ของ struct Kilogram ที่มีค่า 2.0 และส่งเข้าไปในฟังก์ชั่น compute_mass เพื่อคำนวณมวล
+
+    // let acceleration = compute_acceleration(force, mass); // พยายามคำนวณความเร่งโดยใช้ฟังก์ชั่น compute_acceleration ซึ่งจะไม่สามารถทำงานได้เนื่องจาก force และ mass เป็นชนิดข้อมูลที่แตกต่างกันและไม่มีการกำหนดวิธีการคำนวณระหว่างกันในโค้ดนี้
 }
