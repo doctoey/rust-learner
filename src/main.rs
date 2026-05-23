@@ -470,12 +470,35 @@
 //     println!("s5: {s5}"); // พิมพ์ค่าของตัวแปร s5 ออกทางหน้าจอ
 // }
 
+// fn main() {
+//     let x_ref = {
+//         let x = 10; // x เป็นตัวแปรที่มีชนิด i32 และมีค่าเป็น 10
+//         // ทำไม reference ถึงไม่สามารถใช้งานได้หลังจาก block นี้
+//         // เพราะ x เป็นตัวแปรที่ถูกสร้างขึ้นภายใน block นี้ และเมื่อ block นี้สิ้นสุดลง ตัวแปร x จะถูกทำลายและไม่สามารถเข้าถึงได้อีกต่อไป
+//         &x // คืนค่า reference ที่ชี้ไปยังตัวแปร x
+//     };
+//     dbg!(x_ref); // พิมพ์ค่าของ reference x_ref ออกทางหน้าจอ โดยใช้รูปแบบ debug
+// }
+
+struct Person {
+    name: String,
+    age: u8,
+}
+
+fn describe_person(person: &Person) {
+    println!("Name: {}, Age: {}", person.name, person.age); // พิมพ์ค่าของตัวแปร person.name และ person.age ออกทางหน้าจอ
+}
+
 fn main() {
-    let x_ref = {
-        let x = 10; // x เป็นตัวแปรที่มีชนิด i32 และมีค่าเป็น 10
-        // ทำไม reference ถึงไม่สามารถใช้งานได้หลังจาก block นี้
-        // เพราะ x เป็นตัวแปรที่ถูกสร้างขึ้นภายใน block นี้ และเมื่อ block นี้สิ้นสุดลง ตัวแปร x จะถูกทำลายและไม่สามารถเข้าถึงได้อีกต่อไป
-        &x // คืนค่า reference ที่ชี้ไปยังตัวแปร x
+    let peter = Person {
+        name: String::from("Peter"),
+        age: 30,
     };
-    dbg!(x_ref); // พิมพ์ค่าของ reference x_ref ออกทางหน้าจอ โดยใช้รูปแบบ debug
+    describe_person(&peter); // เรียกใช้ฟังก์ชั่น describe_person โดยส่ง reference ของตัวแปร peter
+
+    let jake = Person {
+        name: String::from("Jake"),
+        ..peter
+    };
+    describe_person(&jake); // เรียกใช้ฟังก์ชั่น describe_person โดยส่ง reference ของตัวแปร jake
 }
