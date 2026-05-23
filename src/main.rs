@@ -62,3 +62,19 @@
 // fn main() {
 //     println!("interproduct: {}", interproduct(120, 300, 400)); // เรียกใช้ฟังก์ชั่น interproduct โดยส่งค่า 2, 3, และ 4 และพิมพ์ผลลัพธ์ออกทางหน้าจอ
 // }
+
+// fn takes_u32(x: u32) {
+//     println!("takes_u32: {x}"); // พิมพ์ค่าของตัวแปร x ออกทางหน้าจอ
+// }
+
+// fn takes_i8(x: i8) {
+//     println!("takes_i8: {x}"); // พิมพ์ค่าของตัวแปร x ออกทางหน้าจอ
+// }
+
+// fn main() {
+//     let x = 10;
+//     let y = 20;
+
+//     takes_u32(x);
+//     takes_i8(y);
+// }
