@@ -133,30 +133,44 @@
 //     println!("fib_iter(5): {}", fib_iter(5)); // fib_iter(5
 // }
 
-fn main() {
-    let z = 13;
-    let x = {
-        let y = 7;
-        y + z
-    };
-    dbg!(x);
-    dbg!(z);
-    // dbg!(y); // This line would cause an error because y is not in scope here
+// fn main() {
+//     let z = 13;
+//     let x = {
+//         let y = 7;
+//         y + z
+//     };
+//     dbg!(x);
+//     dbg!(z);
+//     // dbg!(y); // This line would cause an error because y is not in scope here
 
-    let a = 30;
-    // let size = if a < 10 {
-    //     "small"
-    // } else if a < 20 {
-    //     "medium"
-    // } else {
-    //     "large"
-    // };
-    let size = if a < 10 {
-        "small"
-    } else if a < 20 {
-        "medium"
-    } else {
-        "large"
+//     let a = 30;
+//     // let size = if a < 10 {
+//     //     "small"
+//     // } else if a < 20 {
+//     //     "medium"
+//     // } else {
+//     //     "large"
+//     // };
+//     let size = if a < 10 {
+//         "small"
+//     } else if a < 20 {
+//         "medium"
+//     } else {
+//         "large"
+//     };
+//     dbg!(size);
+// }
+
+fn main() {
+    let val = 1;
+    match val {
+        1 => println!("one"),
+        _ => println!("something else"),
     };
-    dbg!(size);
+
+    let flag = true;
+    match flag {
+        true => println!("true"),
+        false => println!("false"),
+    };
 }
