@@ -207,4 +207,13 @@ fn main() {
         // x: 4
         // x: 5
     }
+
+    for elm in [10, 20, 30, 40, 50] {
+        println!("elm: {elm}");
+        // elm: 10
+        // elm: 20
+        // elm: 30
+        // elm: 40
+        // elm: 50
+    }
 }
