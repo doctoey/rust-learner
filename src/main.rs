@@ -343,19 +343,53 @@
 //     // dbg!(t.6); // การเข้าถึงค่าที่อยู่นอกขอบเขตของ tuple t ที่มีขนาด 4 ทำให้เกิดข้อผิดพลาดในการรันโปรแกรม (index out of bounds) เพราะตำแหน่งที่ 6 ไม่มีอยู่ใน tuple t
 // }
 
-fn check_order(tuple: (i32, i32, i32)) -> bool {
-    let (left, middle, right) = tuple; // การแยกค่าจาก tuple ออกมาเป็นตัวแปร left, middle, และ right
-    left < middle && middle < right // การตรวจสอบว่า left น้อยกว่า middle และ middle น้อยกว่า right หรือไม่ โดยใช้ตัวดำเนินการเปรียบเทียบ <
+// fn check_order(tuple: (i32, i32, i32)) -> bool {
+//     let (left, middle, right) = tuple; // การแยกค่าจาก tuple ออกมาเป็นตัวแปร left, middle, และ right
+//     left < middle && middle < right // การตรวจสอบว่า left น้อยกว่า middle และ middle น้อยกว่า right หรือไม่ โดยใช้ตัวดำเนินการเปรียบเทียบ <
+// }
+
+// fn main() {
+//     let tuple = (1, 5, 3);
+
+//     let result = check_order(tuple); // เรียกใช้ฟังก์ชั่น check_order โดยส่งค่า tuple และเก็บผลลัพธ์ในตัวแปร result
+//     println!("Is the tuple in order? {}", result);
+
+//     let tuple2 = (1, 3, 6);
+
+//     let result2 = check_order(tuple2); // เรียกใช้ฟังก์ชั่น check_order โดยส่งค่า tuple2 และเก็บผลลัพธ์ในตัวแปร result2
+//     println!("Is the tuple2 in order? {}", result2);
+// }
+
+// excercise: array transpose
+// implement transpose to turn rows into columns
+// example
+// 123    147
+// 456 => 258
+// 789    369
+
+fn transpose(matrix: [[i32; 3]; 3]) -> [[i32; 3]; 3] {
+    // [[0; 3]; 3]; เป็นการสร้างอาร์เรย์สองมิติที่มีขนาด 3x3 โดยที่แต่ละค่าในอาร์เรย์จะถูกกำหนดเป็น 0
+    let mut transposed = [[0; 3]; 3]; // สร้างอาร์เรย์ใหม่ที่มีขนาดเท่ากับอาร์เรย์ต้นฉบับ แต่ค่าทั้งหมดถูกกำหนดเป็น 0
+    println!("Original matrix: {:?}", matrix); // พิมพ์ค่าของอาร์เรย์ต้นฉบับออกทางหน้าจอ โดยใช้รูปแบบ debug
+    println!("Transposed intitial matrix: {:?}", transposed); // พิมพ์ค่าของอาร์เรย์ transposed ออกทางหน้าจอ โดยใช้รูปแบบ debug
+
+    for i in 0..3 {
+        // วนลูปผ่านแถวของอาร์เรย์ต้นฉบับ
+        for j in 0..3 {
+            // วนลูปผ่านคอลัมน์ของอาร์เรย์ต้นฉบับ
+            transposed[j][i] = matrix[i][j]; // กำหนดค่าของอาร์เรย์ transposed ที่ตำแหน่ง [j][i] ให้เท่ากับค่าของอาร์เรย์ต้นฉบับที่ตำแหน่ง [i][j]
+        }
+    }
+
+    transposed // คืนค่าอาร์เรย์ transposed ที่ได้จากการแปลง
 }
 
 fn main() {
-    let tuple = (1, 5, 3);
-
-    let result = check_order(tuple); // เรียกใช้ฟังก์ชั่น check_order โดยส่งค่า tuple และเก็บผลลัพธ์ในตัวแปร result
-    println!("Is the tuple in order? {}", result);
-
-    let tuple2 = (1, 3, 6);
-
-    let result2 = check_order(tuple2); // เรียกใช้ฟังก์ชั่น check_order โดยส่งค่า tuple2 และเก็บผลลัพธ์ในตัวแปร result2
-    println!("Is the tuple2 in order? {}", result2);
+    let array = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+    // เรียกใช้ฟังก์ชั่น transpose โดยส่งค่า array และเก็บผลลัพธ์ในตัวแปร transposed
+    // ทำงานโดยการวนลูปผ่านแถวและคอลัมน์ของอาร์เรย์ต้นฉบับ และกำหนดค่าของอาร์เรย์ transposed ให้เท่ากับค่าของอาร์เรย์ต้นฉบับที่ตำแหน่งที่สลับกัน (j, i) แทน (i, j)
+    // ผลลัพธ์ที่ได้จะเป็นอาร์เรย์ที่มีแถวและคอลัมน์สลับกันจากอาร์เรย์ต้นฉบับ
+    let transposed = transpose(array);
+    println!("Original array: {:?}", array);
+    println!("Transposed array: {:?}", transposed);
 }
