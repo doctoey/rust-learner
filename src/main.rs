@@ -28,3 +28,20 @@ fn main() {
     x = 20;
     print!("x: {x}");
 }
+
+// Scalar Types: Integers
+// Signed integers: i8, i16, i32, i64, i128
+// isize: ขนาดของตัวแปรขึ้นอยู่กับสถาปัตยกรรมของระบบ (32 บิตหรือ 64 บิต)
+
+// Unsigned integers: u8, u16, u32, u64, u128
+// usize: ขนาดของตัวแปรขึ้นอยู่กับสถาปัตยกรรมของระบบ (32 บิตหรือ 64 บิต)
+
+// Scalar Types: Float, Char, Bool
+// f32, f64: ตัวเลขทศนิยมที่มีความแม่นยำต่างกัน
+// char: ตัวอักษร Unicode ที่มีขนาด 4 ไบต์ 32 bits
+// bool: ค่าความจริงที่มีค่าเป็น true หรือ false 8 bits
+
+// Literal Syntax & Widths
+// Legible Integer Literals: 1_000_000 (สามารถใช้ _ เพื่อเพิ่มความอ่านง่ายของตัวเลข)
+// Type Suffixes: 42u8 (สามารถใช้ suffix เพื่อระบุชนิดของตัวแปร เช่น u8, i32, f64 เป็นต้น)
+// Bit Widths: i8, i16, i32, i64, i128 (ชนิดของตัวแปรที่มีความกว้างของบิตต่างกัน) 8 bit => 1 byte, 16 bit => 2 byte, 32 bit => 4 byte, 64 bit => 8 byte, 128 bit => 16 byte
