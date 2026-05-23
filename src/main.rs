@@ -534,26 +534,36 @@
 //     // let acceleration = compute_acceleration(force, mass); // พยายามคำนวณความเร่งโดยใช้ฟังก์ชั่น compute_acceleration ซึ่งจะไม่สามารถทำงานได้เนื่องจาก force และ mass เป็นชนิดข้อมูลที่แตกต่างกันและไม่มีการกำหนดวิธีการคำนวณระหว่างกันในโค้ดนี้
 // }
 
-#[derive(Debug)]
-enum Direction {
-    Up,
-    Down,
-    Left,
-    Right,
+// #[derive(Debug)]
+// enum Direction {
+//     Up,
+//     Down,
+//     Left,
+//     Right,
+// }
+
+// #[derive(Debug)]
+// enum PlayerMove {
+//     Pass,
+//     Run(Direction),
+//     Teleport { x: i32, y: i32 },
+// }
+// fn main() {
+//     let dir_l = Direction::Left; // สร้าง instance ของ enum Direction ที่มีค่า Left
+//     let player_move = PlayerMove::Run(dir_l); // สร้าง instance ของ enum
+
+//     println!("Player move: {:?}", player_move); // พิมพ์ค่าของตัวแปร player_move ออกทางหน้าจอ โดยใช้รูปแบบ debug
+
+//     let player_move2 = PlayerMove::Teleport { x: 10, y: 20 }; // สร้าง instance ของ enum PlayerMove ที่มีค่า Teleport และกำหนดค่าของ x และ y เป็น 10 และ 20 ตามลำดับ
+//     println!("Player move 2: {:?}", player_move2); // พิมพ์ค่าของตัวแปร player_move2 ออกทางหน้าจอ โดยใช้รูปแบบ debug
+// }
+
+enum CarrayableContestitem {
+    Car(String),   // ตัวแปรที่เก็บข้อมูลเกี่ยวกับรถยนต์ โดยใช้ String เป็นชนิดข้อมูล
+    House(String), // ตัวแปรที่เก็บข้อมูลเกี่ยวกับบ้าน โดยใช้ String เป็นชนิดข้อมูล
+    Boat(String),  // ตัวแปรที่เก็บข้อมูลเกี่ยวกับเรือ โดยใช้ String เป็นชนิดข้อมูล
 }
 
-#[derive(Debug)]
-enum PlayerMove {
-    Pass,
-    Run(Direction),
-    Teleport { x: i32, y: i32 },
-}
-fn main() {
-    let dir_l = Direction::Left; // สร้าง instance ของ enum Direction ที่มีค่า Left
-    let player_move = PlayerMove::Run(dir_l); // สร้าง instance ของ enum
-
-    println!("Player move: {:?}", player_move); // พิมพ์ค่าของตัวแปร player_move ออกทางหน้าจอ โดยใช้รูปแบบ debug
-
-    let player_move2 = PlayerMove::Teleport { x: 10, y: 20 }; // สร้าง instance ของ enum PlayerMove ที่มีค่า Teleport และกำหนดค่าของ x และ y เป็น 10 และ 20 ตามลำดับ
-    println!("Player move 2: {:?}", player_move2); // พิมพ์ค่าของตัวแปร player_move2 ออกทางหน้าจอ โดยใช้รูปแบบ debug
-}
+type item = CarrayableContestitem; // การสร้าง type alias ที่ชื่อ item ซึ่งเป็นชนิดข้อมูลเดียวกับ enum CarrayableContestitem
+// นับเป็น type เดียวกัน เพราะ item เป็นเพียงชื่อใหม่ที่ใช้แทน enum CarrayableContestitem และไม่มีการเปลี่ยนแปลงชนิดข้อมูลหรือโครงสร้างของ enum นี้
+fn main() {}
