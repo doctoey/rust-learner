@@ -480,25 +480,34 @@
 //     dbg!(x_ref); // พิมพ์ค่าของ reference x_ref ออกทางหน้าจอ โดยใช้รูปแบบ debug
 // }
 
-struct Person {
-    name: String,
-    age: u8,
-}
+// struct Person {
+//     name: String,
+//     age: u8,
+// }
 
-fn describe_person(person: &Person) {
-    println!("Name: {}, Age: {}", person.name, person.age); // พิมพ์ค่าของตัวแปร person.name และ person.age ออกทางหน้าจอ
-}
+// fn describe_person(person: &Person) {
+//     println!("Name: {}, Age: {}", person.name, person.age); // พิมพ์ค่าของตัวแปร person.name และ person.age ออกทางหน้าจอ
+// }
+
+// fn main() {
+//     let peter = Person {
+//         name: String::from("Peter"),
+//         age: 30,
+//     };
+//     describe_person(&peter); // เรียกใช้ฟังก์ชั่น describe_person โดยส่ง reference ของตัวแปร peter
+
+//     let jake = Person {
+//         name: String::from("Jake"),
+//         ..peter
+//     };
+//     describe_person(&jake); // เรียกใช้ฟังก์ชั่น describe_person โดยส่ง reference ของตัวแปร jake
+// }
+
+#[derive(Debug)]
+struct Point(i32, i32);
 
 fn main() {
-    let peter = Person {
-        name: String::from("Peter"),
-        age: 30,
-    };
-    describe_person(&peter); // เรียกใช้ฟังก์ชั่น describe_person โดยส่ง reference ของตัวแปร peter
-
-    let jake = Person {
-        name: String::from("Jake"),
-        ..peter
-    };
-    describe_person(&jake); // เรียกใช้ฟังก์ชั่น describe_person โดยส่ง reference ของตัวแปร jake
+    let p = Point(3, 4); // ประกาศตัวแปร p เป็น instance ของ struct Point ที่เก็บค่าตำแหน่ง x และ y ของจุดในรูปแบบ (x, y)
+    dbg!(p); // พิมพ์ค่าของตัวแปร p ออกทางหน้าจอ โดยใช้รูปแบบ debug
+    // println!("Point: ({}, {})", p.0, p.1); // พิมพ์ค่าของตัวแปร p ออกทางหน้าจอ
 }
