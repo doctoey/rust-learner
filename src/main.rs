@@ -330,15 +330,32 @@
 //     }
 // }
 
-fn main() {
-    //tuple เป็นชนิดข้อมูลที่สามารถเก็บค่าหลายๆ ค่าได้ในตัวเดียว โดยแต่ละค่าจะมีชนิดข้อมูลที่แตกต่างกันได้
-    let t = (1, 3.14, 'A', true); // ประ
-    // กาศตัวแปร t เป็น tuple ที่เก็บค่าต่างๆ ได้แก่ 1 (i32), 3.14 (f64), 'A' (char), และ true (bool)
-    println!("t: {t:?}"); // พิมพ์ค่าของตัวแปร t ออกทางหน้าจอ โดยใช้รูปแบบ debug
+// fn main() {
+//     //tuple เป็นชนิดข้อมูลที่สามารถเก็บค่าหลายๆ ค่าได้ในตัวเดียว โดยแต่ละค่าจะมีชนิดข้อมูลที่แตกต่างกันได้
+//     let t = (1, 3.14, 'A', true); // ประ
+//     // กาศตัวแปร t เป็น tuple ที่เก็บค่าต่างๆ ได้แก่ 1 (i32), 3.14 (f64), 'A' (char), และ true (bool)
+//     println!("t: {t:?}"); // พิมพ์ค่าของตัวแปร t ออกทางหน้าจอ โดยใช้รูปแบบ debug
 
-    dbg!(t.0); // 1
-    dbg!(t.1); // 3.14
-    dbg!(t.2); // 'A'
-    dbg!(t.3); // true
-    // dbg!(t.6); // การเข้าถึงค่าที่อยู่นอกขอบเขตของ tuple t ที่มีขนาด 4 ทำให้เกิดข้อผิดพลาดในการรันโปรแกรม (index out of bounds) เพราะตำแหน่งที่ 6 ไม่มีอยู่ใน tuple t
+//     dbg!(t.0); // 1
+//     dbg!(t.1); // 3.14
+//     dbg!(t.2); // 'A'
+//     dbg!(t.3); // true
+//     // dbg!(t.6); // การเข้าถึงค่าที่อยู่นอกขอบเขตของ tuple t ที่มีขนาด 4 ทำให้เกิดข้อผิดพลาดในการรันโปรแกรม (index out of bounds) เพราะตำแหน่งที่ 6 ไม่มีอยู่ใน tuple t
+// }
+
+fn check_order(tuple: (i32, i32, i32)) -> bool {
+    let (left, middle, right) = tuple; // การแยกค่าจาก tuple ออกมาเป็นตัวแปร left, middle, และ right
+    left < middle && middle < right // การตรวจสอบว่า left น้อยกว่า middle และ middle น้อยกว่า right หรือไม่ โดยใช้ตัวดำเนินการเปรียบเทียบ <
+}
+
+fn main() {
+    let tuple = (1, 5, 3);
+
+    let result = check_order(tuple); // เรียกใช้ฟังก์ชั่น check_order โดยส่งค่า tuple และเก็บผลลัพธ์ในตัวแปร result
+    println!("Is the tuple in order? {}", result);
+
+    let tuple2 = (1, 3, 6);
+
+    let result2 = check_order(tuple2); // เรียกใช้ฟังก์ชั่น check_order โดยส่งค่า tuple2 และเก็บผลลัพธ์ในตัวแปร result2
+    println!("Is the tuple2 in order? {}", result2);
 }
