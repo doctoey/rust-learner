@@ -394,37 +394,50 @@
 //     println!("Transposed array: {:?}", transposed);
 // }
 
+// fn main() {
+//     let a = 'A';
+//     let b = 'B';
+
+//     let r = &a; // r เป็น reference ที่ชี้ไปยังตัวแปร a
+//     // เอาออกมาอ่านเฉยๆ
+//     println!("r: {r}"); // พิมพ์ค่าของ reference r อ
+//     dbg!(r); // พิมพ์ค่าของ reference r ออกทางหน้าจอ
+//     //     r: A
+//     // [src/main.rs:404:5] r = 'A'
+
+//     let r2 = &a;
+//     println!("r2: {r2}"); // พิมพ์ค่าของ reference r2 ออกทางหน้าจอ
+//     dbg!(r2); // พิมพ์ค่าของ reference r2 ออกทางจอ
+//     // r2: A
+//     // [src/main.rs:408:5] r2 = 'A'
+
+//     let mut r3 = &a; // r3 เป็น mutable reference ที่ชี้ไปยังตัวแปร a
+//     println!("r3: {r3}"); // พิมพ์ค่าของ mutable reference r3 ออกทางหน้าจอ
+//     dbg!(r3); // พิมพ์ค่าของ mutable reference r3 ออกทางหน้าจอ
+//     // r3: A
+//     // [src/main.rs:413:5] r3 = 'A'
+//     // ยืมเฉยๆ ไม่ได้เปลี่ยนแปลงค่าใดๆ ของตัวแปร a
+//     r3 = &b; // เปลี่ยน reference r ให้ชี้ไปยังตัวแปร b แทน a
+//     println!("r3: {r3}"); // พิมพ์ค่าของ mutable
+//     // r3: B
+//     // [src/main.rs:415:5] r3 = 'B'
+//     dbg!(r3); // พิมพ์ค่าของ mutable reference r3 ออกทางหน้าจอ
+
+//     dbg!(a); // พิมพ์ค่าของตัวแปร a ออกทางหน้าจอ
+//     // a: A
+//     dbg!(b); // พิมพ์ค่าของตัวแปร b ออกทางหน้าจอ
+//     // b: B
+// }
+
 fn main() {
-    let a = 'A';
-    let b = 'B';
+    let mut point = (3, 4); // ประกาศตัวแปร point เป็น tuple ที่เก็บค่าตำแหน่ง x และ y ของจุดในรูปแบบ (x, y)
+    println!("Original point: {:?}", point); // พิมพ์ค่าของตัวแปร point
+    let x_coordinate = &mut point.0; // สร้าง mutable reference ที่ชี้ไปยังค่าตำแหน่ง x ของ point
+    // dereference mutable reference เพื่อแก้ไขค่าของ x ใน point ผ่าน reference นี้
+    *x_coordinate += 1; // เพิ่มค่า x ของ point โดยการ dereference mutable
+    println!("Updated point: {:?}", point); // พิมพ์ค่าของตัวแปร point หลังจากที่ได้แก้ไขค่า x แล้ว
 
-    let r = &a; // r เป็น reference ที่ชี้ไปยังตัวแปร a
-    // เอาออกมาอ่านเฉยๆ
-    println!("r: {r}"); // พิมพ์ค่าของ reference r อ
-    dbg!(r); // พิมพ์ค่าของ reference r ออกทางหน้าจอ
-    //     r: A
-    // [src/main.rs:404:5] r = 'A'
-
-    let r2 = &a;
-    println!("r2: {r2}"); // พิมพ์ค่าของ reference r2 ออกทางหน้าจอ
-    dbg!(r2); // พิมพ์ค่าของ reference r2 ออกทางจอ
-    // r2: A
-    // [src/main.rs:408:5] r2 = 'A'
-
-    let mut r3 = &a; // r3 เป็น mutable reference ที่ชี้ไปยังตัวแปร a
-    println!("r3: {r3}"); // พิมพ์ค่าของ mutable reference r3 ออกทางหน้าจอ
-    dbg!(r3); // พิมพ์ค่าของ mutable reference r3 ออกทางหน้าจอ
-    // r3: A
-    // [src/main.rs:413:5] r3 = 'A'
-    // ยืมเฉยๆ ไม่ได้เปลี่ยนแปลงค่าใดๆ ของตัวแปร a
-    r3 = &b; // เปลี่ยน reference r ให้ชี้ไปยังตัวแปร b แทน a
-    println!("r3: {r3}"); // พิมพ์ค่าของ mutable
-    // r3: B
-    // [src/main.rs:415:5] r3 = 'B'
-    dbg!(r3); // พิมพ์ค่าของ mutable reference r3 ออกทางหน้าจอ
-
-    dbg!(a); // พิมพ์ค่าของตัวแปร a ออกทางหน้าจอ
-    // a: A
-    dbg!(b); // พิมพ์ค่าของตัวแปร b ออกทางหน้าจอ
-    // b: B
+    let y_coordinate = &mut point.1; // สร้าง mutable reference ที่ชี้ไปยังค่าตำแหน่ง y ของ point
+    *y_coordinate += 5; // เพิ่มค่า y ของ point โดยการ dereference mutable
+    println!("Updated point: {:?}", point); // พิมพ์ค่าของตัวแปร point หลังจากที่ได้แก้ไขค่า y แล้ว
 }
