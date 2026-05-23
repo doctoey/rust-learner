@@ -161,16 +161,27 @@
 //     dbg!(size);
 // }
 
-fn main() {
-    let val = 1;
-    match val {
-        1 => println!("one"),
-        _ => println!("something else"),
-    };
+// fn main() {
+//     let val = 1;
+//     match val {
+//         1 => println!("one"),
+//         _ => println!("something else"),
+//     };
 
-    let flag = true;
-    match flag {
-        true => println!("true"),
-        false => println!("false"),
-    };
+//     let flag = true;
+//     match flag {
+//         true => println!("true"),
+//         false => println!("false"),
+//     };
+// }
+
+fn main() {
+    let mut count = 16;
+    while count >= 10 {
+        count = count / 2;
+        // จะออกทุกค่าที่ อยู่ใน loop นี้จนกว่า count จะน้อยกว่า 10
+        dbg!(count);
+    }
+    // จะออกค่าที่อยู่หลัง loop นี้ ซึ่งจะเป็นค่าที่น้อยกว่า 10
+    dbg!(count);
 }
