@@ -558,12 +558,36 @@
 //     println!("Player move 2: {:?}", player_move2); // พิมพ์ค่าของตัวแปร player_move2 ออกทางหน้าจอ โดยใช้รูปแบบ debug
 // }
 
-enum CarrayableContestitem {
-    Car(String),   // ตัวแปรที่เก็บข้อมูลเกี่ยวกับรถยนต์ โดยใช้ String เป็นชนิดข้อมูล
-    House(String), // ตัวแปรที่เก็บข้อมูลเกี่ยวกับบ้าน โดยใช้ String เป็นชนิดข้อมูล
-    Boat(String),  // ตัวแปรที่เก็บข้อมูลเกี่ยวกับเรือ โดยใช้ String เป็นชนิดข้อมูล
+// enum CarrayableContestitem {
+//     Car(String),   // ตัวแปรที่เก็บข้อมูลเกี่ยวกับรถยนต์ โดยใช้ String เป็นชนิดข้อมูล
+//     House(String), // ตัวแปรที่เก็บข้อมูลเกี่ยวกับบ้าน โดยใช้ String เป็นชนิดข้อมูล
+//     Boat(String),  // ตัวแปรที่เก็บข้อมูลเกี่ยวกับเรือ โดยใช้ String เป็นชนิดข้อมูล
+// }
+
+// type item = CarrayableContestitem; // การสร้าง type alias ที่ชื่อ item ซึ่งเป็นชนิดข้อมูลเดียวกับ enum CarrayableContestitem
+// // นับเป็น type เดียวกัน เพราะ item เป็นเพียงชื่อใหม่ที่ใช้แทน enum CarrayableContestitem และไม่มีการเปลี่ยนแปลงชนิดข้อมูลหรือโครงสร้างของ enum นี้
+// fn main() {}
+
+// ตัวใหญ่ ระบุชนิดข้อมูลที่ชัดเจน และไม่เปลี่ยนแปลงค่าได้
+const DIGEST_SIZE: usize = 3; // การประกาศค่าคงที่ DIGEST_SIZE ที่มีชนิด usize และค่าเป็น 3
+const FIELD_VALUE: u8 = 13; // การประกาศค่าคงที่ FIELD_VALUE ที่มีชนิด u8 และค่าเป็น 42
+
+const MAX_SIZE: usize = caller_location();
+// การประกาศค่าคงที่ MAX_SIZE ที่มีชนิด usize และค่าเป็นผลลัพธ์ของฟังก์ชั่น caller_location() ซึ่งเป็นค่าที่ถูกกำหนดโดยฟังก์ชั่นนี้
+// caller_location() เป็นฟังก์ชั่นที่คืนค่า usize ซึ่งในที่นี้จะคืนค่า 100
+
+const fn caller_location() -> usize {
+    100
 }
 
-type item = CarrayableContestitem; // การสร้าง type alias ที่ชื่อ item ซึ่งเป็นชนิดข้อมูลเดียวกับ enum CarrayableContestitem
-// นับเป็น type เดียวกัน เพราะ item เป็นเพียงชื่อใหม่ที่ใช้แทน enum CarrayableContestitem และไม่มีการเปลี่ยนแปลงชนิดข้อมูลหรือโครงสร้างของ enum นี้
-fn main() {}
+fn compote_digest(text: &str) -> [u8; DIGEST_SIZE] {
+    let mut digest = [FIELD_VALUE; DIGEST_SIZE];
+    digest
+}
+fn main() {
+    let text = "Hello, world!"; // ประกาศตัวแปร text เป็น string literal ที่มีค่า "Hello, world!"
+    let digest = compote_digest(text); // เรียกใช้ฟังก์ชั่น compote_digest โดยส่งค่า text และเก็บผลลัพธ์ในตัวแปร digest
+    println!("Digest: {:?}", digest); // พิมพ์ค่าของตัวแปร digest ออกทางหน้าจอ โดยใช้รูปแบบ debug
+
+    println!("caller_location: {}", caller_location()); // เรียกใช้ฟังก์ชั่น caller_location และพิมพ์ค่าที่คืนมาจากฟังก์ชั่นนี้ออกทางหน้าจอ
+}
