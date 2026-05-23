@@ -92,43 +92,71 @@
 // F(5) = F(4) + F(3) = 3 + 2 = 5
 
 // write a function fib(n: u32) that calculates the nth Fibonacci number
-fn fib(n: u32) -> u32 {
-    if n < 2 {
-        return n;
-    } else {
-        return fib(n - 1) + fib(n - 2);
-    }
-}
+// fn fib(n: u32) -> u32 {
+//     if n < 2 {
+//         return n;
+//     } else {
+//         return fib(n - 1) + fib(n - 2);
+//     }
+// }
 
-fn fib_iter(n: u32) -> u32 {
-    if n < 2 {
-        return n;
-    }
-    let mut a = 0;
-    let mut b = 1;
+// fn fib_iter(n: u32) -> u32 {
+//     if n < 2 {
+//         return n;
+//     }
+//     let mut a = 0;
+//     let mut b = 1;
 
-    for _ in 2..=n {
-        let next = a + b;
-        a = b;
-        b = next;
-    }
+//     for _ in 2..=n {
+//         let next = a + b;
+//         a = b;
+//         b = next;
+//     }
 
-    b
-}
+//     b
+// }
+
+// fn main() {
+//     println!("fib(0): {}", fib(0)); // fib(0) = 0
+//     println!("fib(1): {}", fib(1)); // fib(1) = 1
+//     println!("fib(2): {}", fib(2)); // fib(2) = 1
+//     println!("fib(3): {}", fib(3)); // fib(3) = 2
+//     println!("fib(4): {}", fib(4)); // fib(4) = 3
+//     println!("fib(5): {}", fib(5)); // fib(5) = 5
+//     println!("fib(5): {}", fib(10));
+
+//     println!("fib_iter(0): {}", fib_iter(0)); // fib_iter(0) = 0
+//     println!("fib_iter(1): {}", fib_iter(1)); // fib_iter(1
+//     println!("fib_iter(2): {}", fib_iter(2)); // fib_iter(2) = 1
+//     println!("fib_iter(3): {}", fib_iter(3)); // fib_iter(3
+//     println!("fib_iter(4): {}", fib_iter(4)); // fib_iter(4) = 3
+//     println!("fib_iter(5): {}", fib_iter(5)); // fib_iter(5
+// }
 
 fn main() {
-    println!("fib(0): {}", fib(0)); // fib(0) = 0
-    println!("fib(1): {}", fib(1)); // fib(1) = 1
-    println!("fib(2): {}", fib(2)); // fib(2) = 1
-    println!("fib(3): {}", fib(3)); // fib(3) = 2
-    println!("fib(4): {}", fib(4)); // fib(4) = 3
-    println!("fib(5): {}", fib(5)); // fib(5) = 5
-    println!("fib(5): {}", fib(10));
+    let z = 13;
+    let x = {
+        let y = 7;
+        y + z
+    };
+    dbg!(x);
+    dbg!(z);
+    // dbg!(y); // This line would cause an error because y is not in scope here
 
-    println!("fib_iter(0): {}", fib_iter(0)); // fib_iter(0) = 0
-    println!("fib_iter(1): {}", fib_iter(1)); // fib_iter(1
-    println!("fib_iter(2): {}", fib_iter(2)); // fib_iter(2) = 1
-    println!("fib_iter(3): {}", fib_iter(3)); // fib_iter(3
-    println!("fib_iter(4): {}", fib_iter(4)); // fib_iter(4) = 3
-    println!("fib_iter(5): {}", fib_iter(5)); // fib_iter(5
+    let a = 30;
+    // let size = if a < 10 {
+    //     "small"
+    // } else if a < 20 {
+    //     "medium"
+    // } else {
+    //     "large"
+    // };
+    let size = if a < 10 {
+        "small"
+    } else if a < 20 {
+        "medium"
+    } else {
+        "large"
+    };
+    dbg!(size);
 }
