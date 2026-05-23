@@ -79,8 +79,6 @@
 //     takes_i8(y);
 // }
 
-fn main() {}
-
 // excercise : Fibonacci (1/3)
 // The Fibonacci sequence begins with 0 and 1.
 // For n > 1, the next number in the sequence is the sum of the previous two numbers.
@@ -96,8 +94,17 @@ fn main() {}
 // write a function fib(n: u32) that calculates the nth Fibonacci number
 fn fib(n: u32) -> u32 {
     if n < 2 {
-        return todo!("Implement This");
+        return n;
     } else {
-        return todo!("Implement This");
+        return fib(n - 1) + fib(n - 2);
     }
+}
+fn main() {
+    println!("fib(0): {}", fib(0)); // fib(0) = 0
+    println!("fib(1): {}", fib(1)); // fib(1) = 1
+    println!("fib(2): {}", fib(2)); // fib(2) = 1
+    println!("fib(3): {}", fib(3)); // fib(3) = 2
+    println!("fib(4): {}", fib(4)); // fib(4) = 3
+    println!("fib(5): {}", fib(5)); // fib(5) = 5
+    println!("fib(5): {}", fib(10));
 }
