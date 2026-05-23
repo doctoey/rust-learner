@@ -232,17 +232,33 @@
 //     dbg!(x); // จะออกค่าที่อยู่หลัง loop นี้ ซึ่งจะเป็นค่าที่ถูกกำหนดโดย break ใน loop นี้
 // }
 
-fn main() {
-    let mut i = 0;
-    loop {
-        i += 1;
-        if i > 5 {
-            break; // จะออกจาก loop นี้เมื่อ i มากกว่า 5
-        }
+// fn main() {
+//     let mut i = 0;
+//     loop {
+//         i += 1;
+//         if i > 5 {
+//             break; // จะออกจาก loop นี้เมื่อ i มากกว่า 5
+//         }
 
-        if i % 2 == 0 {
-            continue; // จะข้ามการทำงานใน loop นี้เมื่อ i เป็นเลขคู่
+//         if i % 2 == 0 {
+//             continue; // จะข้ามการทำงานใน loop นี้เมื่อ i เป็นเลขคู่
+//         }
+//     }
+//     dbg!(i); // จะออกค่าที่อยู่หลัง loop นี้ ซึ่งจะเป็นค่าที่ถูกกำหนดโดย break ใน loop นี้
+// }
+
+fn main() {
+    let s = [[1, 2], [3, 4], [5, 6]];
+    let mut element_search = 0;
+    let target_value = 4;
+
+    'outer: for i in 0..=2 {
+        for j in 0..=1 {
+            if s[i][j] == target_value {
+                element_search += 1;
+                break 'outer;
+            }
         }
     }
-    dbg!(i); // จะออกค่าที่อยู่หลัง loop นี้ ซึ่งจะเป็นค่าที่ถูกกำหนดโดย break ใน loop นี้
+    dbg!(element_search);
 }
