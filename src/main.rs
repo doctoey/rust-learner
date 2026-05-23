@@ -429,15 +429,23 @@
 //     // b: B
 // }
 
-fn main() {
-    let mut point = (3, 4); // ประกาศตัวแปร point เป็น tuple ที่เก็บค่าตำแหน่ง x และ y ของจุดในรูปแบบ (x, y)
-    println!("Original point: {:?}", point); // พิมพ์ค่าของตัวแปร point
-    let x_coordinate = &mut point.0; // สร้าง mutable reference ที่ชี้ไปยังค่าตำแหน่ง x ของ point
-    // dereference mutable reference เพื่อแก้ไขค่าของ x ใน point ผ่าน reference นี้
-    *x_coordinate += 1; // เพิ่มค่า x ของ point โดยการ dereference mutable
-    println!("Updated point: {:?}", point); // พิมพ์ค่าของตัวแปร point หลังจากที่ได้แก้ไขค่า x แล้ว
+// fn main() {
+//     let mut point = (3, 4); // ประกาศตัวแปร point เป็น tuple ที่เก็บค่าตำแหน่ง x และ y ของจุดในรูปแบบ (x, y)
+//     println!("Original point: {:?}", point); // พิมพ์ค่าของตัวแปร point
+//     let x_coordinate = &mut point.0; // สร้าง mutable reference ที่ชี้ไปยังค่าตำแหน่ง x ของ point
+//     // dereference mutable reference เพื่อแก้ไขค่าของ x ใน point ผ่าน reference นี้
+//     *x_coordinate += 1; // เพิ่มค่า x ของ point โดยการ dereference mutable
+//     println!("Updated point: {:?}", point); // พิมพ์ค่าของตัวแปร point หลังจากที่ได้แก้ไขค่า x แล้ว
 
-    let y_coordinate = &mut point.1; // สร้าง mutable reference ที่ชี้ไปยังค่าตำแหน่ง y ของ point
-    *y_coordinate += 5; // เพิ่มค่า y ของ point โดยการ dereference mutable
-    println!("Updated point: {:?}", point); // พิมพ์ค่าของตัวแปร point หลังจากที่ได้แก้ไขค่า y แล้ว
+//     let y_coordinate = &mut point.1; // สร้าง mutable reference ที่ชี้ไปยังค่าตำแหน่ง y ของ point
+//     *y_coordinate += 5; // เพิ่มค่า y ของ point โดยการ dereference mutable
+//     println!("Updated point: {:?}", point); // พิมพ์ค่าของตัวแปร point หลังจากที่ได้แก้ไขค่า y แล้ว
+// }
+
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+    let s = &a[0..2]; // สร้าง slice s ที่ชี้ไปยังส่วนของอาร์เรย์ a ตั้งแต่ตำแหน่งที่ 0 ถึงตำแหน่งที่ 2 (ไม่รวมตำแหน่งที่ 3)
+    println!("Slice s: {:?}", s); // พิมพ์ค่าของ slice s ออกทางหน้าจอ โดยใช้รูปแบบ debug
+
+    // slice ไม่สามารถ append หรือ push ค่าใหม่เข้าไปได้ เพราะ slice เป็นเพียงการอ้างอิงถึงส่วนของอาร์เรย์ที่มีอยู่แล้ว และไม่มีความสามารถในการจัดการหน่วยความจำเพื่อเพิ่มขนาดของตัวเอง
 }
