@@ -512,26 +512,48 @@
 //     // println!("Point: ({}, {})", p.0, p.1); // พิมพ์ค่าของตัวแปร p ออกทางหน้าจอ
 // }
 
+// struct Newton(f64);
+// struct Kilogram(f64);
 
+// fn compute_force(Newton(n   )) -> Newton {
+//     Newton(n)
+// }
+// fn compute_mass(Kilogram(k  )) -> Kilogram {
+//     Kilogram(k)
+// }
 
-struct Newton(f64);
-struct Kilogram(f64);
+// fn compute_acceleration(Newton(n), Kilogram(k)) -> f64 {
+//     // เอามาคำนวนกันไม่ได้ เพราะคนละ type กัน
+//     // Newton และ Kilogram เป็น struct ที่มีชนิดข้อมูลที่แตกต่างกัน และไม่มีการกำหนดวิธีการคำนวณระหว่างกันในโค้ดนี้ ดังนั้นจึงไม่สามารถนำค่า n จาก Newton และค่า k จาก Kilogram มาคำนว
+//     n / k
+// }
+// fn main() {
+//     let force = compute_force(Newton(10.0)); // สร้าง instance ของ struct Newton ที่มีค่า 10.0 และส่งเข้าไปในฟังก์ชั่น compute_force เพื่อคำนวณแรง
+//     let mass = compute_mass(Kilogram(2.0)); // สร้าง instance ของ struct Kilogram ที่มีค่า 2.0 และส่งเข้าไปในฟังก์ชั่น compute_mass เพื่อคำนวณมวล
 
-fn compute_force(Newton(n   )) -> Newton {
-    Newton(n)
+//     // let acceleration = compute_acceleration(force, mass); // พยายามคำนวณความเร่งโดยใช้ฟังก์ชั่น compute_acceleration ซึ่งจะไม่สามารถทำงานได้เนื่องจาก force และ mass เป็นชนิดข้อมูลที่แตกต่างกันและไม่มีการกำหนดวิธีการคำนวณระหว่างกันในโค้ดนี้
+// }
+
+#[derive(Debug)]
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right,
 }
-fn compute_mass(Kilogram(k  )) -> Kilogram {
-    Kilogram(k)
-}
 
-fn compute_acceleration(Newton(n), Kilogram(k)) -> f64 {
-    // เอามาคำนวนกันไม่ได้ เพราะคนละ type กัน
-    // Newton และ Kilogram เป็น struct ที่มีชนิดข้อมูลที่แตกต่างกัน และไม่มีการกำหนดวิธีการคำนวณระหว่างกันในโค้ดนี้ ดังนั้นจึงไม่สามารถนำค่า n จาก Newton และค่า k จาก Kilogram มาคำนว
-    n / k
+#[derive(Debug)]
+enum PlayerMove {
+    Pass,
+    Run(Direction),
+    Teleport { x: i32, y: i32 },
 }
 fn main() {
-    let force = compute_force(Newton(10.0)); // สร้าง instance ของ struct Newton ที่มีค่า 10.0 และส่งเข้าไปในฟังก์ชั่น compute_force เพื่อคำนวณแรง
-    let mass = compute_mass(Kilogram(2.0)); // สร้าง instance ของ struct Kilogram ที่มีค่า 2.0 และส่งเข้าไปในฟังก์ชั่น compute_mass เพื่อคำนวณมวล
+    let dir_l = Direction::Left; // สร้าง instance ของ enum Direction ที่มีค่า Left
+    let player_move = PlayerMove::Run(dir_l); // สร้าง instance ของ enum
 
-    // let acceleration = compute_acceleration(force, mass); // พยายามคำนวณความเร่งโดยใช้ฟังก์ชั่น compute_acceleration ซึ่งจะไม่สามารถทำงานได้เนื่องจาก force และ mass เป็นชนิดข้อมูลที่แตกต่างกันและไม่มีการกำหนดวิธีการคำนวณระหว่างกันในโค้ดนี้
+    println!("Player move: {:?}", player_move); // พิมพ์ค่าของตัวแปร player_move ออกทางหน้าจอ โดยใช้รูปแบบ debug
+
+    let player_move2 = PlayerMove::Teleport { x: 10, y: 20 }; // สร้าง instance ของ enum PlayerMove ที่มีค่า Teleport และกำหนดค่าของ x และ y เป็น 10 และ 20 ตามลำดับ
+    println!("Player move 2: {:?}", player_move2); // พิมพ์ค่าของตัวแปร player_move2 ออกทางหน้าจอ โดยใช้รูปแบบ debug
 }
