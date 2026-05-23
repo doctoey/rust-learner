@@ -99,6 +99,23 @@ fn fib(n: u32) -> u32 {
         return fib(n - 1) + fib(n - 2);
     }
 }
+
+fn fib_iter(n: u32) -> u32 {
+    if n < 2 {
+        return n;
+    }
+    let mut a = 0;
+    let mut b = 1;
+
+    for _ in 2..=n {
+        let next = a + b;
+        a = b;
+        b = next;
+    }
+
+    b
+}
+
 fn main() {
     println!("fib(0): {}", fib(0)); // fib(0) = 0
     println!("fib(1): {}", fib(1)); // fib(1) = 1
@@ -107,4 +124,11 @@ fn main() {
     println!("fib(4): {}", fib(4)); // fib(4) = 3
     println!("fib(5): {}", fib(5)); // fib(5) = 5
     println!("fib(5): {}", fib(10));
+
+    println!("fib_iter(0): {}", fib_iter(0)); // fib_iter(0) = 0
+    println!("fib_iter(1): {}", fib_iter(1)); // fib_iter(1
+    println!("fib_iter(2): {}", fib_iter(2)); // fib_iter(2) = 1
+    println!("fib_iter(3): {}", fib_iter(3)); // fib_iter(3
+    println!("fib_iter(4): {}", fib_iter(4)); // fib_iter(4) = 3
+    println!("fib_iter(5): {}", fib_iter(5)); // fib_iter(5
 }
