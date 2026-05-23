@@ -16,11 +16,11 @@
 // Safe Concurrency: Rust มีระบบการจัดการการทำงานพร้อมกันที่ปลอดภัย ซึ่งช่วยลดปัญหาเกี่ยวกับการทำงานพร้อมกัน เช่น การ
 // Scalability: Rust สามารถใช้ในการพัฒนาแอปพลิเคชันที่มีความสามารถในการปรับขนาดได้ดี เช่น เว็บเซิร์ฟเวอร์และระบบเครือข่าย
 
-// Benefits of Rust:
-// No Null Pointers: Rust ไม่มี null pointers ซึ่งช่วยลดปัญหาเกี่ยวกับการเข้าถึงข้อมูลที่ไม่ได้รับอนุญาต
-// No Double Free: Rust ไม่มีปัญหาเกี่ยวกับการปล่อยหน่วยความจำสองครั้ง ซึ่งช่วยลดปัญหาเกี่ยวกับการจัดการหน่วยความจำ
-// No Data Races: Rust ไม่มีปัญหาเกี่ยวกับการเข้าถึงข้อมูลที่ไม่ได้รับอนุญาตในสภาพแวดล้อมที่มีการทำงานพร้อมกัน
-// No Use After Free: Rust ไม่มีปัญหาเกี่ยวกับการใช้หน่วยความจำที่ถูกปล่อยแล้ว ซึ่งช่วยลดปัญหาเกี่ยวกับการจัดการหน่วยความจำ
+// ประโยชน์เพิ่มเติมของ Rust:
+// - ไม่มี null pointers: ลดข้อผิดพลาดการเข้าถึงค่าที่ไม่มีอยู่
+// - ปลอดภัยจากการปล่อยหน่วยความจำซ้ำ (double free)
+// - ป้องกัน data races ในการทำงานพร้อมกัน
+// - ป้องกันการใช้หน่วยความจำหลังจากถูกปล่อยแล้ว (use-after-free)
 
 // fn main() {
 //     let mut x = 10;
@@ -29,22 +29,17 @@
 //     print!("x: {x}");
 // }
 
-// Scalar Types: Integers
-// Signed integers: i8, i16, i32, i64, i128
-// isize: ขนาดของตัวแปรขึ้นอยู่กับสถาปัตยกรรมของระบบ (32 บิตหรือ 64 บิต)
-
-// Unsigned integers: u8, u16, u32, u64, u128
-// usize: ขนาดของตัวแปรขึ้นอยู่กับสถาปัตยกรรมของระบบ (32 บิตหรือ 64 บิต)
-
-// Scalar Types: Float, Char, Bool
-// f32, f64: ตัวเลขทศนิยมที่มีความแม่นยำต่างกัน
-// char: ตัวอักษร Unicode ที่มีขนาด 4 ไบต์ 32 bits
-// bool: ค่าความจริงที่มีค่าเป็น true หรือ false 8 bits
-
-// Literal Syntax & Widths
-// Legible Integer Literals: 1_000_000 (สามารถใช้ _ เพื่อเพิ่มความอ่านง่ายของตัวเลข)
-// Type Suffixes: 42u8 (สามารถใช้ suffix เพื่อระบุชนิดของตัวแปร เช่น u8, i32, f64 เป็นต้น)
-// Bit Widths: i8, i16, i32, i64, i128 (ชนิดของตัวแปรที่มีความกว้างของบิตต่างกัน) 8 bit => 1 byte, 16 bit => 2 byte, 32 bit => 4 byte, 64 bit => 8 byte, 128 bit => 16 byte
+// ชนิดข้อมูลเชิงสเกล (Scalar types)
+// - จำนวนเต็มมีทั้ง signed เช่น i8, i16, i32, i64, i128
+//   และ unsigned เช่น u8, u16, u32, u64, u128
+// - `isize`/`usize` ปรับขนาดตามสถาปัตยกรรม (32-หรือ-64 บิต)
+// - จำนวนจริง: `f32`, `f64` (ความแม่นยำต่างกัน)
+// - ตัวอักษร: `char` เก็บ Unicode (4 ไบต์)
+// - ตรรกะ: `bool` มีค่า `true`/`false`
+// ตัวอย่าง syntax ที่น่าสนใจ:
+// - ใช้ `_` เพื่ออ่านตัวเลขง่ายขึ้น เช่น 1_000_000
+// - เติม suffix ระบุชนิด เช่น 42u8, 3.14f64
+// - ความกว้างบิต: i8=1 byte, i16=2, i32=4, i64=8, i128=16
 
 // fn main() {
 //     let x: i32 = 10; // ประกาศตัวแปร x เป็นชนิด i32 และกำหนดค่าเริ่มต้นเป็น 10
@@ -592,9 +587,183 @@
 //     println!("caller_location: {}", caller_location()); // เรียกใช้ฟังก์ชั่น caller_location และพิมพ์ค่าที่คืนมาจากฟังก์ชั่นนี้ออกทางหน้าจอ
 // }
 
-static BANNER: &str = "Welcome!"; // การประกาศตัวแปร global ที่มีชื่อว่า BANNER ซึ่งเป็นค่าคงที่ที่มีชนิด &str และค่าเริ่มต้นเป็น "Welcome!"
+use std::collections::BTreeSet;
+
+// สรุปสั้น ๆ ของส่วนสำคัญด้านล่างนี้ (อ่านง่าย):
+// - BTreeSet: เก็บชุดชั้นที่ต้องไป (เรียงลำดับ ไม่ซ้ำ) เพื่อค้นหา range ได้สะดวก
+// - Direction: ทิศทางลิฟต์ (Up/Down)
+// - Floor: alias ของ i32 ใช้อ่านโค้ดให้ชัดเจนขึ้น
+// - Button / Event: เหตุการณ์จากปุ่ม (lobby / car)
+// - Elevator: สถานะลิฟต์ (current, targets, dir, doors_open) และเมทอดหลัก:
+//     * new(start) - สร้างลิฟต์เริ่มต้น
+//     * add_target(f) - เพิ่มชั้นเป้าหมาย (เปิดประตูทันทีถ้าเป็นชั้นปัจจุบัน)
+//     * update_direction() - ตัดสินใจทิศทางโดยอิง target ที่ใกล้ที่สุด/ทิศปัจจุบัน
+//     * step() - เคลื่อนทีละชั้น, เปิดประตูเมื่อถึง target
+//     * open_doors() - เปิด/ปิดประตู (ในตัวอย่างปิดทันที)
+//     * handle_event(ev) - รับเหตุการณ์ปุ่มแล้วเรียก add_target
+// - main(): สร้างลิฟต์, ส่งเหตุการณ์ตัวอย่าง แล้วเรียก step() จนหมดคิว
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum Direction {
+    Up,
+    Down,
+}
+
+type Floor = i32;
+
+#[derive(Debug)]
+enum Button {
+    LobbyCall { floor: Floor, dir: Direction },
+    CarFloorSelect { floor: Floor },
+}
+
+#[derive(Debug)]
+enum Event {
+    ButtonPressed(Button),
+}
+
+struct Elevator {
+    current: Floor,
+    targets: BTreeSet<Floor>,
+    dir: Option<Direction>,
+    doors_open: bool,
+}
+
+impl Elevator {
+    fn new(start: Floor) -> Self {
+        Self {
+            current: start,
+            targets: BTreeSet::new(),
+            dir: None,
+            doors_open: false,
+        }
+    }
+
+    fn add_target(&mut self, f: Floor) {
+        if f == self.current {
+            // already here: open doors
+            self.open_doors();
+            return;
+        }
+        self.targets.insert(f);
+        self.update_direction();
+    }
+
+    fn update_direction(&mut self) {
+        if self.targets.is_empty() {
+            self.dir = None;
+            return;
+        }
+        // choose direction based on nearest target
+        if let Some(d) = self.dir {
+            // keep direction if there is any target in that direction
+            match d {
+                Direction::Up => {
+                    if self.targets.range((self.current + 1)..).next().is_some() {
+                        return;
+                    }
+                }
+                Direction::Down => {
+                    if self.targets.range(..self.current).next_back().is_some() {
+                        return;
+                    }
+                }
+            }
+        }
+        // pick direction towards nearest target
+        if let Some(&above) = self.targets.range((self.current + 1)..).next() {
+            if let Some(&below) = self.targets.range(..self.current).next_back() {
+                // choose closer
+                if (above - self.current).abs() <= (self.current - below).abs() {
+                    self.dir = Some(Direction::Up);
+                } else {
+                    self.dir = Some(Direction::Down);
+                }
+            } else {
+                self.dir = Some(Direction::Up);
+            }
+        } else {
+            self.dir = Some(Direction::Down);
+        }
+    }
+
+    fn step(&mut self) {
+        if self.targets.is_empty() {
+            println!("Elevator idle at floor {}", self.current);
+            self.dir = None;
+            return;
+        }
+        // ensure direction
+        if self.dir.is_none() {
+            self.update_direction();
+        }
+        match self.dir {
+            Some(Direction::Up) => self.current += 1,
+            Some(Direction::Down) => self.current -= 1,
+            None => {}
+        }
+        println!("Arrived floor {}", self.current);
+        if self.targets.remove(&self.current) {
+            self.open_doors();
+        }
+        // if no more targets in current direction, recalc
+        self.update_direction();
+    }
+
+    fn open_doors(&mut self) {
+        self.doors_open = true;
+        println!("Doors opening at floor {}", self.current);
+        // simulate door close immediately for this simple demo
+        self.doors_open = false;
+        println!("Doors closed at floor {}", self.current);
+    }
+
+    fn handle_event(&mut self, ev: Event) {
+        match ev {
+            Event::ButtonPressed(btn) => match btn {
+                Button::LobbyCall { floor, dir: _ } => {
+                    println!("Lobby call at {}", floor);
+                    self.add_target(floor);
+                }
+                Button::CarFloorSelect { floor } => {
+                    println!("Car selected floor {}", floor);
+                    self.add_target(floor);
+                }
+            },
+        }
+    }
+
+    fn has_pending(&self) -> bool {
+        !self.targets.is_empty()
+    }
+}
 
 fn main() {
-    // BANNER = "Hello!"; // การพยายามแก้ไขค่าของตัวแปร global BANNER ซึ่งเป็นค่าคงที่ ทำให้เกิดข้อผิดพลาดในการรันโปรแกรม (cannot assign to immutable item) เพราะค่าของ BANNER ไม่สามารถเปลี่ยนแปลงได้
-    println!("{}", BANNER); // พิมพ์ค่าของตัวแปร BANNER ออกทางหน้าจอ
+    // simple simulation
+    let mut elev = Elevator::new(1);
+
+    // incoming events
+    let events = vec![
+        Event::ButtonPressed(Button::LobbyCall {
+            floor: 3,
+            dir: Direction::Down,
+        }),
+        Event::ButtonPressed(Button::LobbyCall {
+            floor: 1,
+            dir: Direction::Up,
+        }),
+        Event::ButtonPressed(Button::CarFloorSelect { floor: 5 }),
+        Event::ButtonPressed(Button::CarFloorSelect { floor: 2 }),
+    ];
+
+    for ev in events {
+        elev.handle_event(ev);
+    }
+
+    // run until no pending targets
+    while elev.has_pending() {
+        elev.step();
+    }
+
+    println!("Simulation finished. Elevator at floor {}", elev.current);
 }
