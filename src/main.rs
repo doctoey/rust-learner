@@ -569,25 +569,32 @@
 // fn main() {}
 
 // ตัวใหญ่ ระบุชนิดข้อมูลที่ชัดเจน และไม่เปลี่ยนแปลงค่าได้
-const DIGEST_SIZE: usize = 3; // การประกาศค่าคงที่ DIGEST_SIZE ที่มีชนิด usize และค่าเป็น 3
-const FIELD_VALUE: u8 = 13; // การประกาศค่าคงที่ FIELD_VALUE ที่มีชนิด u8 และค่าเป็น 42
+// const DIGEST_SIZE: usize = 3; // การประกาศค่าคงที่ DIGEST_SIZE ที่มีชนิด usize และค่าเป็น 3
+// const FIELD_VALUE: u8 = 13; // การประกาศค่าคงที่ FIELD_VALUE ที่มีชนิด u8 และค่าเป็น 42
 
-const MAX_SIZE: usize = caller_location();
-// การประกาศค่าคงที่ MAX_SIZE ที่มีชนิด usize และค่าเป็นผลลัพธ์ของฟังก์ชั่น caller_location() ซึ่งเป็นค่าที่ถูกกำหนดโดยฟังก์ชั่นนี้
-// caller_location() เป็นฟังก์ชั่นที่คืนค่า usize ซึ่งในที่นี้จะคืนค่า 100
+// const MAX_SIZE: usize = caller_location();
+// // การประกาศค่าคงที่ MAX_SIZE ที่มีชนิด usize และค่าเป็นผลลัพธ์ของฟังก์ชั่น caller_location() ซึ่งเป็นค่าที่ถูกกำหนดโดยฟังก์ชั่นนี้
+// // caller_location() เป็นฟังก์ชั่นที่คืนค่า usize ซึ่งในที่นี้จะคืนค่า 100
 
-const fn caller_location() -> usize {
-    100
-}
+// const fn caller_location() -> usize {
+//     100
+// }
 
-fn compote_digest(text: &str) -> [u8; DIGEST_SIZE] {
-    let mut digest = [FIELD_VALUE; DIGEST_SIZE];
-    digest
-}
+// fn compote_digest(text: &str) -> [u8; DIGEST_SIZE] {
+//     let mut digest = [FIELD_VALUE; DIGEST_SIZE];
+//     digest
+// }
+// fn main() {
+//     let text = "Hello, world!"; // ประกาศตัวแปร text เป็น string literal ที่มีค่า "Hello, world!"
+//     let digest = compote_digest(text); // เรียกใช้ฟังก์ชั่น compote_digest โดยส่งค่า text และเก็บผลลัพธ์ในตัวแปร digest
+//     println!("Digest: {:?}", digest); // พิมพ์ค่าของตัวแปร digest ออกทางหน้าจอ โดยใช้รูปแบบ debug
+
+//     println!("caller_location: {}", caller_location()); // เรียกใช้ฟังก์ชั่น caller_location และพิมพ์ค่าที่คืนมาจากฟังก์ชั่นนี้ออกทางหน้าจอ
+// }
+
+static BANNER: &str = "Welcome!"; // การประกาศตัวแปร global ที่มีชื่อว่า BANNER ซึ่งเป็นค่าคงที่ที่มีชนิด &str และค่าเริ่มต้นเป็น "Welcome!"
+
 fn main() {
-    let text = "Hello, world!"; // ประกาศตัวแปร text เป็น string literal ที่มีค่า "Hello, world!"
-    let digest = compote_digest(text); // เรียกใช้ฟังก์ชั่น compote_digest โดยส่งค่า text และเก็บผลลัพธ์ในตัวแปร digest
-    println!("Digest: {:?}", digest); // พิมพ์ค่าของตัวแปร digest ออกทางหน้าจอ โดยใช้รูปแบบ debug
-
-    println!("caller_location: {}", caller_location()); // เรียกใช้ฟังก์ชั่น caller_location และพิมพ์ค่าที่คืนมาจากฟังก์ชั่นนี้ออกทางหน้าจอ
+    // BANNER = "Hello!"; // การพยายามแก้ไขค่าของตัวแปร global BANNER ซึ่งเป็นค่าคงที่ ทำให้เกิดข้อผิดพลาดในการรันโปรแกรม (cannot assign to immutable item) เพราะค่าของ BANNER ไม่สามารถเปลี่ยนแปลงได้
+    println!("{}", BANNER); // พิมพ์ค่าของตัวแปร BANNER ออกทางหน้าจอ
 }
